@@ -18,6 +18,10 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Use interactors and contracts for logic
+gem "interactor"
+gem "interactor-contracts"
+
 # Required gems for server to run
 gem "sprockets-rails"
 gem "sqlite3"
