@@ -29,6 +29,9 @@ group :development do
 
   # For lint
   gem "rubocop", require: false
+
+  # For unit tests
+  gem "rspec-rails"
 end
 
 group :test do
