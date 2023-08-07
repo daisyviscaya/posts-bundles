@@ -1,0 +1,22 @@
+require: rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "config.ru"
+    - "Rakefile"
+    - ".pryrc"
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "bin/{rails,rake,spring,setup,bundle,update}"
+    - "vendor/**/*"
+    - "spec/**/*"
+    - "test/**/*"
+
+Style/Documentation:
+  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: double_quotes  
+Style/FrozenStringLiteralComment:
+  Enabled: false
