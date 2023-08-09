@@ -1,7 +1,6 @@
 module Core
   module Bundles
     class Types
-
       def self.bundles
         {
           IMG: { 5 => 450, 10 => 800 },

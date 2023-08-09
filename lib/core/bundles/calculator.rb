@@ -13,13 +13,14 @@ module Core
       def calculate
         bundle_combinations = get_bundle_combinations(@bundle_kinds, @desired_quantity)
         return [] if bundle_combinations.empty?
-        
-        puts "ITO NA"
+
+        # puts "ITO NA"
         cheapest_bundle(bundle_combinations)
       end
 
       private
 
+      # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
       def get_bundle_combinations(available_bundles, target_price)
         return [] if target_price.zero? || available_bundles.empty?
 
@@ -33,26 +34,26 @@ module Core
             results << ([qty] + ([0] * remaining_products.length))
           else
             get_bundle_combinations(remaining_products, remaining_price).each do |option|
-              puts "THISp: #{this_price} qty: #{qty} OPTION: #{option}"
+              # puts "THISp: #{this_price} qty: #{qty} OPTION: #{option}"
               results << ([qty] + option)
             end
           end
         end
-        print results
+        # print results
         results
       end
+      # rubocop: enable Metrics/AbcSize, Metrics/MethodLength
 
       def cheapest_bundle(bundle_combinations)
         min_sum = @desired_quantity
         min_price = nil
         min_combination = []
         bundle_combinations.each do |bundle|
-          bundle_price = get_price(bundle)
-          if min_price.nil? || (bundle.sum <= min_sum && bundle_price < min_price)
-            min_sum = bundle.sum
-            min_price = bundle_price
-            min_combination = bundle
-          end
+          next unless min_price.nil? || (bundle.sum <= min_sum && get_price(bundle) < min_price)
+
+          min_sum = bundle.sum
+          min_price = get_price(bundle)
+          min_combination = bundle
         end
 
         min_combination
@@ -66,24 +67,6 @@ module Core
 
         price_total
       end
-
-      # def get_minimum_bundle_price(bundle_combinations)
-      #   min_price_total = 0
-      #   min_price_combination = []
-      #   bundle_combinations.each do |bundle|
-      #     price_total = 0
-      #     bundle.each do |c|
-      #       price_total += c * @bundle_prices[@bundle_kinds[bundle.find_index(c)]]
-      #     end
-
-      #     if min_price_total < price_total
-      #       min_price_combination = bundle
-      #       min_price_total = price_total
-      #     end
-      #   end
-
-      #   return min_price_combination
-      # end
     end
   end
 end
