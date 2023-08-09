@@ -1,8 +1,4 @@
-"""
-Bundles::Organizers::Calculate.call(
-  bundles_input: '10 IMG 15 flac 13 VID'
-)
-"""
+# Bundles::Organizers::Calculate.call(bundles_input: '10 IMG 15 flac 13 VID')
 
 module Bundles
   module Organizers
