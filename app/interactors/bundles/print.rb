@@ -10,15 +10,18 @@ module Bundles
       required(:body).filled
     end
 
+    # rubocop: disable Rails/Output
     def call
       context.body.each do |item|
         puts "#{item[:quantity]} #{item[:format]} -> $#{item[:total]}"
         item[:breakdown].each do |bundle_type|
           next if bundle_type[:quantity].zero?
+
           puts "\t #{bundle_type[:quantity]} x #{bundle_type[:type]} -> $#{bundle_type[:price]}"
         end
         puts "----------"
       end
     end
+    # rubocop: enable Rails/Output
   end
 end
