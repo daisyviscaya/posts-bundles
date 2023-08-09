@@ -1,14 +1,12 @@
-"""
-Bundles::Prepare.call(
-  resulted_bundles: [
-    { bundle_combination: [2, 0, 2], quantity: 24, format: 'VID'}
-  ]
+=begin
+context = Bundles::Prepare.call(
+  resulted_bundles: [{ bundle_combination: [2, 0, 2], quantity: 24, format: "VID" }]
 )
 
-context.body = [{
-  quantity: , format: , total: , breakdown: [{ type: , quantity: , price: }]
-}]
-"""
+context.body = [{ quantity: 24, format: "VID", total: 4200,
+  breakdown: [{ type: 3, quantity: 2, price: 1140 }, { type: 5, quantity: 0, price: 0 }, { type: 9, quantity: 2, price: 3060 }]
+  }]
+=end
 
 module Bundles
   class Prepare < BaseInteractor

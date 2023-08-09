@@ -1,9 +1,6 @@
-"""
-Bundles::Validate.call(
-  bundles_input: '1 img 2 vid 3 flac'
-)
-['1', 'img', '2', 'vid']
-"""
+=begin
+Bundles::Validate.call(bundles_input: "1 img 2 vid 3 flac")
+=end
 
 module Bundles
   class Validate < BaseInteractor

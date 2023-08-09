@@ -1,11 +1,8 @@
-"""
-body = [
-  { quantity: , format: , total: , breakdown: [{ type: , quantity: , price: }] }
-]
-Bundles::Print.call(
-  body: body
-)
-"""
+=begin
+body = [{ quantity: 10, format: "IMG", total: 800,
+          breakdown: [{ type: 5, quantity: 0, price: 0 }, { type: 10, quantity: 1, price: 800 }] }]
+Bundles::Print.call(body: body)
+=end
 
 module Bundles
   class Print < BaseInteractor

@@ -1,17 +1,11 @@
-"""
-Bundles::Quantify.call(
+=begin
+context = Bundles::Quantify.call(
   bundles_params: [
-    { quantity: 24, format: 'VID' },
-    { quantity: 30, format: 'IMG' }
+    { quantity: 24, format: "VID" }
   ]
 )
-
-Bundles::Quantify.call(
-  bundles_params: [
-    { quantity: 12, format: 'IMG' }
-  ]
-)
-"""
+context.resulted_bundles = [{ quantity: 24, format: "VID", bundle_combination: [2, 0, 2] }]
+=end
 
 module Bundles
   class Quantify < BaseInteractor
