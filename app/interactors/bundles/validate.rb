@@ -1,5 +1,8 @@
 =begin
-Bundles::Validate.call(bundles_input: "1 img 2 vid 3 flac")
+input = "1 IMG 2 VID 3 FLAC"
+Bundles::Validate.call(bundles_input: input)
+
+input.split = ["1", "IMG", "2", "VID", "3", "FLAC"]
 =end
 
 module Bundles
