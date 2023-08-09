@@ -39,6 +39,9 @@ group :development do
 
   # For unit tests
   gem "rspec-rails"
+
+  gem "pry"
+  gem "pry-rails"
 end
 
 group :test do
