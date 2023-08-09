@@ -25,15 +25,15 @@ module Core
         return [] if target_price.zero? || available_bundles.empty?
 
         this_price = available_bundles[0]
-        remaining_products = available_bundles[1..]
+        remaining_bundles = available_bundles[1..]
         results = []
 
         (1 + (target_price / this_price)).times do |qty|
           remaining_price = target_price - (qty * this_price)
           if remaining_price.zero?
-            results << ([qty] + ([0] * remaining_products.length))
+            results << ([qty] + ([0] * remaining_bundles.length))
           else
-            get_bundle_combinations(remaining_products, remaining_price).each do |option|
+            get_bundle_combinations(remaining_bundles, remaining_price).each do |option|
               # puts "THISp: #{this_price} qty: #{qty} OPTION: #{option}"
               results << ([qty] + option)
             end
@@ -42,27 +42,31 @@ module Core
         # print results
         results
       end
-      # rubocop: enable Metrics/AbcSize, Metrics/MethodLength
+      # rubocop: enable Metrics/AbcSize
 
       def cheapest_bundle(bundle_combinations)
-        min_sum = @desired_quantity
+        min_count = nil
         min_price = nil
-        min_combination = []
+        min_combination = nil
         bundle_combinations.each do |bundle|
-          next unless min_price.nil? || (bundle.sum <= min_sum && get_price(bundle) < min_price)
+          curr_count = bundle.sum
+          curr_price = get_price(bundle)
+          next unless min_price.nil? || (curr_count <= min_count && curr_price < min_price)
 
-          min_sum = bundle.sum
-          min_price = get_price(bundle)
+          min_count = curr_count
+          min_price = curr_price
           min_combination = bundle
         end
 
         min_combination
       end
+      # rubocop: enable Metrics/MethodLength
 
       def get_price(bundle)
         price_total = 0
         bundle.each_with_index do |item_count, index|
-          price_total += item_count * @bundle_prices[@bundle_kinds[index]]
+          price_per_bundle = @bundle_prices[@bundle_kinds[index]]
+          price_total += item_count * price_per_bundle
         end
 
         price_total
