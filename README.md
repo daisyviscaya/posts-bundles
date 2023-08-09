@@ -49,6 +49,6 @@ context.error
 => "Invalid input format. Please try again."
 ```
 
-* To check the unit tests, run `rspec`. All test files are in `spec/` folder
+* To check the unit tests, run `rspec` from the root folder. All test files are in `spec/` folder
 
-* To check for lint errors, run `rubocop`
+* To check for lint errors, run `rubocop` from the root folder
