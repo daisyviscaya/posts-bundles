@@ -1,24 +1,54 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is made to compute the minimum bundle types required to accommodate an order.
 
-Things you may want to cover:
+This project is running on Ruby version 3.1.2 and Rails version 7.0.6.
 
-* Ruby version
+To install it into your local:
 
-* System dependencies
+* run `git clone https://github.com/daisyviscaya/posts-bundles.git` on your console
 
-* Configuration
+* Got to the root folder of the repository. Then, run `bundle` to install the ruby gems needed
 
-* Database creation
+* Go to the rails console by typing `rails c` on the root folder of the repository
 
-* Database initialization
+* To run the main interactor that computes the bundles, run 
+```
+Bundles::Organizers::Calculate.call(
+  bundles_input: "10 IMG 15 FLAC 13 VID"
+)
+```
 
-* How to run the test suite
+Output:
+```
+10 IMG -> $800
+	 1 x 10 -> $800
+----------
+15 FLAC -> $1957.5
+	 1 x 6 -> $810
+	 1 x 9 -> $1147.5
+----------
+13 VID -> $2370
+	 1 x 3 -> $570
+	 2 x 5 -> $1800
+----------
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+* Wrong/Invalid input should return an error message: 
 
-* Deployment instructions
+```
+context = Bundles::Organizers::Calculate.call(
+  bundles_input: "IMG 10 FLAC 15 VID 13"
+)
 
-* ...
+context.success?
+=> false
+context.failure?
+=> true
+context.error
+=> "Invalid input format. Please try again."
+```
+
+* To check the unit tests, run `rspec`. All test files are in `spec/` folder
+
+* To check for lint errors, run `rubocop`
