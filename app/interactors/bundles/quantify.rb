@@ -18,6 +18,10 @@ module Bundles
       end
     end
 
+    assures do
+      required(:resulted_bundles).filled
+    end
+
     def call
       resulted_bundles = []
       context.bundles_params.each do |bundle|

@@ -21,6 +21,10 @@ module Bundles
       context.body = []
     end
 
+    assures do
+      required(:body).filled
+    end
+
     def call
       context.resulted_bundles.each do |bundle|
         bundle_prices = BUNDLE_TYPES[bundle[:format].to_sym]
