@@ -45,6 +45,7 @@ It should print this output:
 # Edit str_input variable for input
 str_input = "NOT_INT IMG"
 
+# Call this Interactor in the rails console
 context = Bundles::Organizers::Calculate.call(
   bundles_input: str_input
 )
