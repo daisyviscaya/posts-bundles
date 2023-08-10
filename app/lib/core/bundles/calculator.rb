@@ -14,7 +14,6 @@ module Core
         bundle_combinations = get_bundle_combinations(@bundle_kinds, @desired_quantity)
         return [] if bundle_combinations.empty?
 
-        # puts "ITO NA"
         cheapest_bundle(bundle_combinations)
       end
 
@@ -34,12 +33,10 @@ module Core
             results << ([qty] + ([0] * remaining_bundles.length))
           else
             get_bundle_combinations(remaining_bundles, remaining_price).each do |option|
-              # puts "THISp: #{this_price} qty: #{qty} OPTION: #{option}"
               results << ([qty] + option)
             end
           end
         end
-        # print results
         results
       end
       # rubocop: enable Metrics/AbcSize
