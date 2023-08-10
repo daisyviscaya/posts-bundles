@@ -16,10 +16,10 @@ To install it into your local:
 ```
 Bundles::Organizers::Calculate.call(
   bundles_input: "10 IMG 15 FLAC 13 VID"
-)
+);
 ```
 
-Output:
+It should print this output:
 ```
 10 IMG -> $800
 	 1 x 10 -> $800
