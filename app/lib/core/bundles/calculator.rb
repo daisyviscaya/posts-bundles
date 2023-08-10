@@ -20,19 +20,20 @@ module Core
       private
 
       # rubocop: disable Metrics/AbcSize, Metrics/MethodLength
-      def get_bundle_combinations(available_bundles, target_price)
-        return [] if target_price.zero? || available_bundles.empty?
+      # This gets all the possible combination of bundles that sums up to the inputted quantity
+      def get_bundle_combinations(available_bundles, target_quantity)
+        return [] if target_quantity.zero? || available_bundles.empty?
 
-        this_price = available_bundles[0]
+        curr_bundle = available_bundles[0]
         remaining_bundles = available_bundles[1..]
         results = []
 
-        (1 + (target_price / this_price)).times do |qty|
-          remaining_price = target_price - (qty * this_price)
-          if remaining_price.zero?
+        (1 + (target_quantity / curr_bundle)).times do |qty|
+          remaining_quantity = target_quantity - (qty * curr_bundle)
+          if remaining_quantity.zero?
             results << ([qty] + ([0] * remaining_bundles.length))
           else
-            get_bundle_combinations(remaining_bundles, remaining_price).each do |option|
+            get_bundle_combinations(remaining_bundles, remaining_quantity).each do |option|
               results << ([qty] + option)
             end
           end
@@ -41,6 +42,7 @@ module Core
       end
       # rubocop: enable Metrics/AbcSize
 
+      # This gets the bundle combination with least number of bundles and with the cheapest price
       def cheapest_bundle(bundle_combinations)
         min_count = nil
         min_price = nil
@@ -59,6 +61,7 @@ module Core
       end
       # rubocop: enable Metrics/MethodLength
 
+      # This computes for the price of the bundle
       def get_price(bundle)
         price_total = 0
         bundle.each_with_index do |item_count, index|
