@@ -14,9 +14,14 @@ To install it into your local:
 
 * To run the main interactor that computes the bundles, run 
 ```
+# Edit str_input variable for input
+str_input = "10 IMG 15 FLAC 13 VID"
+
+# Call this Interactor in the rails console
 Bundles::Organizers::Calculate.call(
-  bundles_input: "10 IMG 15 FLAC 13 VID"
+  bundles_input: str_input
 );
+
 ```
 
 It should print this output:
@@ -37,8 +42,11 @@ It should print this output:
 * Wrong/Invalid input should return an error message: 
 
 ```
+# Edit str_input variable for input
+str_input = "NOT_INT IMG"
+
 context = Bundles::Organizers::Calculate.call(
-  bundles_input: "IMG 10 FLAC 15 VID 13"
+  bundles_input: str_input
 )
 
 context.success?
