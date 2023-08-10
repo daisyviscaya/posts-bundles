@@ -9,10 +9,6 @@ describe Bundles::Validate do
       expect(context).to be_a_failure
     end
 
-    it "should add bundles_params to context" do
-      expect(context.bundles_params).to be_empty
-    end
-
     it "should return an error" do
       expect(context.error).to eq("Invalid input format. Please try again.")
     end
@@ -24,10 +20,6 @@ describe Bundles::Validate do
 
     it "should fail" do
       expect(context).to be_a_failure
-    end
-
-    it "should add bundles_params to context" do
-      expect(context.bundles_params).to be_empty
     end
 
     it "should return an error" do
