@@ -37,8 +37,9 @@ describe Bundles::Quantify do
   end
 
 
-  describe "when input has the correct format BUT with INVALID bundles" do
+  describe "when order can't be satisfied with the allowable bundle combinations" do
     let(:params) do
+      # allowable bundle for IMG is only multiples of 5 and 10
       { bundles_params: [ quantity: 12, format: "IMG" ] }
     end
     let(:context) { described_class.call(params) }
@@ -51,7 +52,7 @@ describe Bundles::Quantify do
       expect(context.resulted_bundles).to be_present
     end
 
-    it "should have correct values for context.resulted_bundles" do
+    it "should return empty bundle_combination" do
       expect(context.resulted_bundles).to eq(
         [{ quantity: 12, format: "IMG", bundle_combination: [] }]
       )

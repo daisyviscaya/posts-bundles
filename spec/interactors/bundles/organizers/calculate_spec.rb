@@ -12,7 +12,7 @@ describe Bundles::Organizers::Calculate do
     )
   end
 
-  describe "when input is missing or invalid" do
+  describe "when input is missing" do
     let(:context) { described_class.call() }
 
     it "should fail" do
@@ -20,9 +20,17 @@ describe Bundles::Organizers::Calculate do
     end
   end
 
-  describe "when input is valid" do
+  describe "when input is invalid" do
+    let(:context) { described_class.call(bundles_input: "not_int IMG") }
+
+    it "should fail" do
+      expect(context).to be_a_failure
+    end
+  end
+
+  describe "when input is complete and valid" do
     let(:params) do
-      { bundles_input: "12 img" }
+      { bundles_input: "10 IMG" }
     end
     let(:context) { described_class.call(params) }
     it "should succeed" do

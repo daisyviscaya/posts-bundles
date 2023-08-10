@@ -1,8 +1,20 @@
 require "rails_helper"
 
 describe Bundles::Prepare do
-  describe "when input is missing or invalid" do
+  describe "when input is missing" do
     let(:context) { described_class.call() }
+
+    it "should fail" do
+      expect(context).to be_a_failure
+    end
+
+    it "should not add body to context" do
+      expect(context.body).to be_nil
+    end
+  end
+
+  describe "when input is invalid" do
+    let(:context) { described_class.call(resulted_bundles: []) }
 
     it "should fail" do
       expect(context).to be_a_failure
